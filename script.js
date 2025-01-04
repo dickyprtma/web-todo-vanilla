@@ -2,6 +2,8 @@
 // PARSET IT FROM STRING TO OBJECT WITH JSON PARSE
 // RETURN ARRAY OBJECT
 let todos = JSON.parse(localStorage.getItem("todos"))
+let globalUpdateId
+let isEditMode = false
 
 
 /*
@@ -34,7 +36,7 @@ function showTodo() {
                     <div class="settings">
                         <i onClick=showMenu(this) class="uil uil-ellipsis-h"></i>
                         <ul class="task-menu">
-                            <li><i class="uil uil-pen"></i>Edit</li>
+                            <li onclick="updateTask(${i}, '${item.name}')"><i class="uil uil-pen"></i>Edit</li>
                             <li onclick="deleteTask(${i})"><i class="uil uil-trash"></i>Hapus</li>
                         </ul>
                     </div>
@@ -113,15 +115,26 @@ function deleteTask(deleteId) {
     showTodo()
 }
 
+function updateTask(updateId, taskName) {
+    globalUpdateId = updateId
+    isEditMode = true
+    taskInputElement.value = taskName
+}
+
 taskInputElement.addEventListener("keyup", e => {
     let userTask = taskInputElement.value.trim()
     if (e.key == "Enter" && userTask !== "") {
-        if (!todos) { // jika belum ada buat array baru
-            todos = []
+        if (!isEditMode) {
+            if (!todos) { // jika belum ada buat array baru
+                todos = []
+            }
+            let taskInfo = { name: userTask, status: "pending" }
+            todos.push(taskInfo)
+        } else {
+            isEditMode = false
+            todos[globalUpdateId].name = userTask
         }
-
-        let taskInfo = { name: userTask, status: "pending" }
-        todos.push(taskInfo)
+        taskInputElement.value = ""
         localStorage.setItem("todos", JSON.stringify(todos))
         showTodo()
     }
