@@ -32,7 +32,7 @@ function showTodo() {
                         <p class="${isCompleted}">${item.name}</p>
                     </label>
                     <div class="settings">
-                        <i class="uil uil-ellipsis-h"></i>
+                        <i onClick=showMenu(this) class="uil uil-ellipsis-h"></i>
                         <ul class="task-menu">
                             <li><i class="uil uil-pen"></i>Edit</li>
                             <li><i class="uil uil-trash"></i>Hapus</li>
@@ -55,6 +55,7 @@ function showTodo() {
 
 showTodo()
 
+//todo : selectedTask ini element sebaiknya tambahin element di props/param ini
 function updateStatus(selectedTask) {
     let taskName = selectedTask.parentElement.lastElementChild
 
@@ -76,6 +77,14 @@ function updateStatus(selectedTask) {
     // SEDERHANANYA INI MENGUPDATE SELURUH DATA
     // DENGAN MENIMPA JSON YANG LAMA DENGAN JSON YANG BARU
     localStorage.setItem("todos", JSON.stringify(todos))
+}
+
+function showMenu(selectedElement) {
+    // mengecek tag element saat ini <i>
+    // alert(selectedElement.tagName) 
+
+    let taskMenuElement = selectedElement.parentElement.lastElementChild
+    taskMenuElement.classList.add("show")
 }
 
 taskInputElement.addEventListener("keyup", e => {

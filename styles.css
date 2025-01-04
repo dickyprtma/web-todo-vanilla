@@ -196,6 +196,8 @@ li {
     transform-origin: top right;
 }
 
+/* trigger ketika 
+class="task-menu" menjadi  class="task-menu show" */
 .task-menu.show {
     transform: scale(1);
 }
@@ -216,6 +218,10 @@ li {
 .settings li:hover {
     background: #f5f5f5;
 }
+
+/* .settings:hover .task-menu {
+    transform: scale(1)
+} */
 
 .settings li i {
     padding-right: 8px;
