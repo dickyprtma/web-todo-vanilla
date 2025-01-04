@@ -90,7 +90,7 @@ li {
     padding: 7px 13px;
     border-radius: 4px;
     letter-spacing: 0.3px;
-    pointer-events: none;
+    /* pointer-events: none; */
     transition: transform 0.25s ease;
     background: linear-gradient(135deg, #1798fb 0%, #2D5CFE 100%);
 }

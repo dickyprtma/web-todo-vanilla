@@ -17,8 +17,10 @@ console.log(todos[1].name)
 
 // GET HTML ELEMENT TO GET MANIPULATED WITH JS USING DOM
 const taskInputElement = document.querySelector(".task-input input")
+const taskBox = document.querySelector(".task-box")
+const filters = document.querySelectorAll(".filters span")
+const clearAll = document.querySelector(".clear-btn")
 
-filters = document.querySelectorAll(".filters span")
 filters.forEach(btn => {
     btn.addEventListener("click", () => {
         document.querySelector("span.active").classList.remove("active")
@@ -27,7 +29,6 @@ filters.forEach(btn => {
     })
 })
 
-const taskBox = document.querySelector(".task-box")
 
 function showTodo(filter) {
     let li = ""
@@ -151,4 +152,11 @@ taskInputElement.addEventListener("keyup", e => {
         localStorage.setItem("todos", JSON.stringify(todos))
         showTodo()
     }
+})
+
+clearAll.addEventListener("click", () => {
+    // removing all items of array and local storage
+    todos.splice(0, todos.length)
+    localStorage.setItem("todos", JSON.stringify(todos))
+    showTodo()
 })
