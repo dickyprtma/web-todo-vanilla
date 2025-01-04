@@ -20,25 +20,27 @@ const taskBox = document.querySelector(".task-box")
 
 function showTodo() {
     let li = ""
-    todos.forEach((item, i) => {
-        // for testing purpose
-        // console.log(`${i} : ${item.name}`)
-        li += `
-        <li class="task">
-                <label for="${i}">
-                    <input type="checkbox" id="${i}">
-                    <p>${item.name}</p>
-                </label>
-                <div class="settings">
-                    <i class="uil uil-ellipsis-h"></i>
-                    <ul class="task-menu">
-                        <li><i class="uil uil-pen"></i>Edit</li>
-                        <li><i class="uil uil-trash"></i>Hapus</li>
-                    </ul>
-                </div>
-            </li>
-        `
-    });
+    if (todos) {
+        todos.forEach((item, i) => {
+            // for testing purpose
+            // console.log(`${i} : ${item.name}`)
+            li += `
+            <li class="task">
+                    <label for="${i}">
+                        <input onclick="updateStatus(this)" type="checkbox" id="${i}">
+                        <p>${item.name}</p>
+                    </label>
+                    <div class="settings">
+                        <i class="uil uil-ellipsis-h"></i>
+                        <ul class="task-menu">
+                            <li><i class="uil uil-pen"></i>Edit</li>
+                            <li><i class="uil uil-trash"></i>Hapus</li>
+                        </ul>
+                    </div>
+                </li>
+            `
+        });
+    }
 
     /* 
 
@@ -49,7 +51,17 @@ function showTodo() {
     */
     taskBox.innerHTML = li
 }
+
 showTodo()
+
+function updateStatus(selectedTask) {
+    let taskName = selectedTask.parentElement.lastElementChild
+    if (selectedTask.checked) {
+        taskName.classList.add("checked")
+    } else {
+        taskName.classList.remove("checked")
+    }
+}
 
 taskInputElement.addEventListener("keyup", e => {
     let userTask = taskInputElement.value.trim()
