@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- unicons -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+</head>
+
+<body>
+    <div class="card">
+        <div class="task-input">
+            <input type="text" placeholder="Tambah tugas baru">
+        </div>
+
+        <div class="controls">
+            <div class="filters">
+                <span id="all">All</span>
+                <span id="pending">Pending</span>
+                <span id="completed">Completed</span>
+            </div>
+            <button class="clear-btn">Clear All</button>
+        </div>
+
+        <ul class="task-box">
+            <li class="task">
+                <label>
+                    <input type="checkbox" id="1">
+                    <p>bersih-bersih</p>
+                </label>
+                <div class="settings">
+                    <i class="uil uil-ellipsis-h"></i>
+                    <ul class="task-menu">
+                        <li><i class="uil uil-pen"></i>Edit</li>
+                        <li><i class="uil uil-trash"></i>Hapus</li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="task">
+                <label>
+                    <input type="checkbox" id="1">
+                    <p>bersih-bersih</p>
+                </label>
+                <div class="settings">
+                    <i class="uil uil-ellipsis-h"></i>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
