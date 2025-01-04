@@ -10,6 +10,7 @@ for testing
 console.log(todos)
 console.log(todos[0])
 console.log(todos[1].name)
+
 */
 
 const taskInputElement = document.querySelector(".task-input input")
