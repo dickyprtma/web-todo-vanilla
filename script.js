@@ -26,7 +26,7 @@ function showTodo() {
         li += `
         <li class="task">
                 <label for="${i}">
-                    <input type="checkbox" id="1">
+                    <input type="checkbox" id="${i}">
                     <p>${item.name}</p>
                 </label>
                 <div class="settings">
