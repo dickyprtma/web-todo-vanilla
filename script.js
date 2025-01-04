@@ -1,4 +1,4 @@
-// GET LOCAL STORAGE OBJECT
+// GET DATA FROM LOCAL STORAGE 
 // PARSET IT FROM STRING TO OBJECT WITH JSON PARSE
 // RETURN ARRAY OBJECT
 let todos = JSON.parse(localStorage.getItem("todos"))
@@ -22,13 +22,14 @@ function showTodo() {
     let li = ""
     if (todos) {
         todos.forEach((item, i) => {
+            let isCompleted = item.status == "completed" ? "checked" : ""
             // for testing purpose
             // console.log(`${i} : ${item.name}`)
             li += `
             <li class="task">
                     <label for="${i}">
-                        <input onclick="updateStatus(this)" type="checkbox" id="${i}">
-                        <p>${item.name}</p>
+                        <input onclick="updateStatus(this)" type="checkbox" id="${i}" ${isCompleted}>
+                        <p class="${isCompleted}">${item.name}</p>
                     </label>
                     <div class="settings">
                         <i class="uil uil-ellipsis-h"></i>
@@ -56,11 +57,25 @@ showTodo()
 
 function updateStatus(selectedTask) {
     let taskName = selectedTask.parentElement.lastElementChild
+
+
+    // alert(selectedTask) // <input>
+    // alert(selectedTask.parentElement) // <label>
+    // alert(taskName) //<p>
+
     if (selectedTask.checked) {
         taskName.classList.add("checked")
+
+        // update selected task status
+        todos[selectedTask.id].status = "completed"
     } else {
         taskName.classList.remove("checked")
+        todos[selectedTask.id].status = "pending"
     }
+
+    // SEDERHANANYA INI MENGUPDATE SELURUH DATA
+    // DENGAN MENIMPA JSON YANG LAMA DENGAN JSON YANG BARU
+    localStorage.setItem("todos", JSON.stringify(todos))
 }
 
 taskInputElement.addEventListener("keyup", e => {
