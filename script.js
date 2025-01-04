@@ -95,6 +95,7 @@ function updateStatus(selectedTask) {
     // SEDERHANANYA INI MENGUPDATE SELURUH DATA
     // DENGAN MENIMPA JSON YANG LAMA DENGAN JSON YANG BARU
     localStorage.setItem("todos", JSON.stringify(todos))
+    showTodo(currentFilter)
 }
 
 function showMenu(selectedElement) {
