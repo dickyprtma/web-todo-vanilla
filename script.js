@@ -85,6 +85,14 @@ function showMenu(selectedElement) {
 
     let taskMenuElement = selectedElement.parentElement.lastElementChild
     taskMenuElement.classList.add("show")
+
+    document.addEventListener("click", e => {
+        // hapus 'show' dari class taskMenu untuk menghilangkan menunya
+
+        if (e.target.tagName != "I" || e.target != selectedElement) {
+            taskMenuElement.classList.remove("show")
+        }
+    })
 }
 
 taskInputElement.addEventListener("keyup", e => {
