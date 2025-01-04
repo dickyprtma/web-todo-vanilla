@@ -5,6 +5,7 @@ let todos = JSON.parse(localStorage.getItem("todos"))
 let globalUpdateId
 let isEditMode = false
 
+let currentFilter = "all"
 
 /*
 for testing
@@ -21,11 +22,12 @@ const taskBox = document.querySelector(".task-box")
 const filters = document.querySelectorAll(".filters span")
 const clearAll = document.querySelector(".clear-btn")
 
-filters.forEach(btn => {
-    btn.addEventListener("click", () => {
+filters.forEach(spanElement => {
+    spanElement.addEventListener("click", () => {
         document.querySelector("span.active").classList.remove("active")
-        btn.classList.add("active")
-        showTodo(btn.id)
+        spanElement.classList.add("active")
+        currentFilter = spanElement.id
+        showTodo(spanElement.id)
     })
 })
 
@@ -150,7 +152,7 @@ taskInputElement.addEventListener("keyup", e => {
         }
         taskInputElement.value = ""
         localStorage.setItem("todos", JSON.stringify(todos))
-        showTodo()
+        showTodo(currentFilter)
     }
 })
 
