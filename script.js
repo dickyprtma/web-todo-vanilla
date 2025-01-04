@@ -35,7 +35,7 @@ function showTodo() {
                         <i onClick=showMenu(this) class="uil uil-ellipsis-h"></i>
                         <ul class="task-menu">
                             <li><i class="uil uil-pen"></i>Edit</li>
-                            <li><i class="uil uil-trash"></i>Hapus</li>
+                            <li onclick="deleteTask(${i})"><i class="uil uil-trash"></i>Hapus</li>
                         </ul>
                     </div>
                 </li>
@@ -90,7 +90,7 @@ function showMenu(selectedElement) {
         // hapus 'show' dari class taskMenu untuk menghilangkan menunya
 
         /*
-        e.target adalah adalah elemen DOM apapun yang memicu event, maksudnya yg diklik user itulah yg akan diambil (dan ini tagnamenya dalam huruf besar)
+        e.target adalah adalah elemen DOM apapun yang memicu event, maksudnya yg diklik user itulah yg akan diambil (dan ini tagnamenya dalam hu ruf besar)
         kalau yg diklik paragraf maka e.target adalah object htmlEelement p
         <p> -> P
         <h1> ->  H1
@@ -101,6 +101,16 @@ function showMenu(selectedElement) {
             taskMenuElement.classList.remove("show")
         }
     })
+}
+
+function deleteTask(deleteId) {
+    // menghapus dari array
+    // splice adalah fungsi untuk menghapus elemen dari sebuah array splice(indexDimulai, jumlah elemen yg ingin dihapus)
+    todos.splice(deleteId, 1)
+    localStorage.setItem("todos", JSON.stringify(todos))
+
+    // refresh data
+    showTodo()
 }
 
 taskInputElement.addEventListener("keyup", e => {
