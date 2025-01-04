@@ -39,6 +39,14 @@ function showTodo() {
             </li>
         `
     });
+
+    /* 
+
+    innerHTML akan mereplace apapaun yang berada di dalam
+    tag dengan class taskBox
+    <element class=task-box> li akan mereplace semua disini </element>
+
+    */
     taskBox.innerHTML = li
 }
 showTodo()
