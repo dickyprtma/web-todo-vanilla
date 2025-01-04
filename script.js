@@ -18,30 +18,43 @@ console.log(todos[1].name)
 // GET HTML ELEMENT TO GET MANIPULATED WITH JS USING DOM
 const taskInputElement = document.querySelector(".task-input input")
 
+filters = document.querySelectorAll(".filters span")
+filters.forEach(btn => {
+    btn.addEventListener("click", () => {
+        document.querySelector("span.active").classList.remove("active")
+        btn.classList.add("active")
+        showTodo(btn.id)
+    })
+})
+
 const taskBox = document.querySelector(".task-box")
 
-function showTodo() {
+function showTodo(filter) {
     let li = ""
     if (todos) {
         todos.forEach((item, i) => {
             let isCompleted = item.status == "completed" ? "checked" : ""
             // for testing purpose
             // console.log(`${i} : ${item.name}`)
-            li += `
-            <li class="task">
-                    <label for="${i}">
-                        <input onclick="updateStatus(this)" type="checkbox" id="${i}" ${isCompleted}>
-                        <p class="${isCompleted}">${item.name}</p>
-                    </label>
-                    <div class="settings">
-                        <i onClick=showMenu(this) class="uil uil-ellipsis-h"></i>
-                        <ul class="task-menu">
-                            <li onclick="updateTask(${i}, '${item.name}')"><i class="uil uil-pen"></i>Edit</li>
-                            <li onclick="deleteTask(${i})"><i class="uil uil-trash"></i>Hapus</li>
-                        </ul>
-                    </div>
-                </li>
-            `
+
+            if (filter == item.status || filter == "all") {
+                li += `
+                <li class="task">
+                        <label for="${i}">
+                            <input onclick="updateStatus(this)" type="checkbox" id="${i}" ${isCompleted}>
+                            <p class="${isCompleted}">${item.name}</p>
+                        </label>
+                        <div class="settings">
+                            <i onClick=showMenu(this) class="uil uil-ellipsis-h"></i>
+                            <ul class="task-menu">
+                                <li onclick="updateTask(${i}, '${item.name}')"><i class="uil uil-pen"></i>Edit</li>
+                                <li onclick="deleteTask(${i})"><i class="uil uil-trash"></i>Hapus</li>
+                            </ul>
+                        </div>
+                    </li>
+                `
+            }
+
         });
     }
 
@@ -52,10 +65,10 @@ function showTodo() {
     <element class=task-box> li akan mereplace semua disini </element>
 
     */
-    taskBox.innerHTML = li
+    taskBox.innerHTML = li || `<span>Belum ada tugas yang ditambahkan</span>`
 }
 
-showTodo()
+showTodo("all")
 
 //todo : selectedTask ini element sebaiknya tambahin element di props/param ini
 function updateStatus(selectedTask) {
