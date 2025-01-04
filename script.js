@@ -89,6 +89,14 @@ function showMenu(selectedElement) {
     document.addEventListener("click", e => {
         // hapus 'show' dari class taskMenu untuk menghilangkan menunya
 
+        /*
+        e.target adalah adalah elemen DOM apapun yang memicu event, maksudnya yg diklik user itulah yg akan diambil (dan ini tagnamenya dalam huruf besar)
+        kalau yg diklik paragraf maka e.target adalah object htmlEelement p
+        <p> -> P
+        <h1> ->  H1
+        */
+        // alert(e.target.tagName)
+
         if (e.target.tagName != "I" || e.target != selectedElement) {
             taskMenuElement.classList.remove("show")
         }
