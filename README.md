@@ -6,3 +6,6 @@
 Rincian 
 - Jika menekan edit, tombol akan berubah dari tambah menjadi edit
 - Icon juga berubah dari plus menjadi pencil
+
+* OPSIONAL
+Bikin pagination per item 5
