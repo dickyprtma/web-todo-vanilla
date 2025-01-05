@@ -8,14 +8,31 @@
     font-family: Poppins;
 }
 
+
+/* Styling untuk body agar elemen berada di tengah */
 body {
+    display: flex;
+    flex-direction: column;
+    /* Elemen ditumpuk vertikal */
+    justify-content: center;
+    /* Pusatkan secara vertikal */
+    align-items: center;
+    /* Pusatkan secara horizontal */
+    height: 100vh;
+    /* Tinggi 100% dari viewport */
+
+    /* Warna latar belakang */
     background-color: #4483ed;
+}
+
+.title {
+    color: white;
 }
 
 .card {
     max-width: 405px;
+    margin-top: 20px;
     padding: 28px 0 30px;
-    margin: 137px auto;
     background: #fff;
     border-radius: 7px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
